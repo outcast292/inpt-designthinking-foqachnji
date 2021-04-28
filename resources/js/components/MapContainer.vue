@@ -10,6 +10,8 @@ import View from "ol/View";
 import { defaults as defaultControls, ScaleLine } from "ol/control";
 import { Tile as TileLayer, Vector as VectorLayer } from "ol/layer";
 import { OSM, Vector as VectorSource } from "ol/source";
+import {fromLonLat} from 'ol/proj';
+
 export default {
   data() {
     return {
@@ -42,18 +44,9 @@ export default {
         target: "map",
         layers: [raster, vector],
         view: new View({
-          center: [0, 0],
-          zoom: 2,
+          center: [-616187.55 ,4015164.57],
+          zoom: 15,
         }),
-      });
-      var geolocation = new Geolocation({
-        trackingOptions: {
-          enableHighAccuracy: true,
-        },
-      });
-      geolocation.watchPosition((position) => {
-        this.position = position;
-        map.getView().setCenter(position);
       });
     },
   },

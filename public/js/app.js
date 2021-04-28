@@ -1882,19 +1882,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var ol_ol_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ol/ol.css */ "./node_modules/ol/ol.css");
 /* harmony import */ var ol_ol_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(ol_ol_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var ol_Map__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ol/Map */ "./node_modules/ol/Map.js");
-/* harmony import */ var ol_View__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ol/View */ "./node_modules/ol/View.js");
-/* harmony import */ var ol_control__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ol/control */ "./node_modules/ol/control.js");
-/* harmony import */ var ol_control__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ol/control */ "./node_modules/ol/control/ScaleLine.js");
-/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer/Vector.js");
-/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer/Tile.js");
-/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source/Vector.js");
-/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source/OSM.js");
+/* harmony import */ var ol_Map__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ol/Map */ "./node_modules/ol/Map.js");
+/* harmony import */ var ol_View__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ol/View */ "./node_modules/ol/View.js");
+/* harmony import */ var ol_control__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ol/control */ "./node_modules/ol/control.js");
+/* harmony import */ var ol_control__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ol/control */ "./node_modules/ol/control/ScaleLine.js");
+/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer/Vector.js");
+/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer/Tile.js");
+/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source/Vector.js");
+/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source/OSM.js");
+/* harmony import */ var ol_proj__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/proj */ "./node_modules/ol/proj.js");
 //
 //
 //
 //
  // This is library of openlayer for handle map
+
 
 
 
@@ -1912,38 +1914,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     initiateMap: function initiateMap() {
-      var _this = this;
-
       // create vector layer
-      var source = new ol_source__WEBPACK_IMPORTED_MODULE_1__.default();
-      var vector = new ol_layer__WEBPACK_IMPORTED_MODULE_2__.default({
+      var source = new ol_source__WEBPACK_IMPORTED_MODULE_2__.default();
+      var vector = new ol_layer__WEBPACK_IMPORTED_MODULE_3__.default({
         source: source
       }); // create title layer
 
-      var raster = new ol_layer__WEBPACK_IMPORTED_MODULE_3__.default({
-        source: new ol_source__WEBPACK_IMPORTED_MODULE_4__.default()
+      var raster = new ol_layer__WEBPACK_IMPORTED_MODULE_4__.default({
+        source: new ol_source__WEBPACK_IMPORTED_MODULE_5__.default()
       }); // create map with 2 layer
       //
 
-      var map = new ol_Map__WEBPACK_IMPORTED_MODULE_5__.default({
-        controls: (0,ol_control__WEBPACK_IMPORTED_MODULE_6__.defaults)().extend([new ol_control__WEBPACK_IMPORTED_MODULE_7__.default({
+      var map = new ol_Map__WEBPACK_IMPORTED_MODULE_6__.default({
+        controls: (0,ol_control__WEBPACK_IMPORTED_MODULE_7__.defaults)().extend([new ol_control__WEBPACK_IMPORTED_MODULE_8__.default({
           units: "degrees"
         })]),
         target: "map",
         layers: [raster, vector],
-        view: new ol_View__WEBPACK_IMPORTED_MODULE_8__.default({
-          center: [0, 0],
-          zoom: 2
+        view: new ol_View__WEBPACK_IMPORTED_MODULE_9__.default({
+          center: [-616187.55, 4015164.57],
+          zoom: 15
         })
-      });
-      var geolocation = new Geolocation({
-        trackingOptions: {
-          enableHighAccuracy: true
-        }
-      });
-      geolocation.watchPosition(function (position) {
-        _this.position = position;
-        map.getView().setCenter(position);
       });
     }
   }
