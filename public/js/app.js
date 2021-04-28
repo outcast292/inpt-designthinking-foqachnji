@@ -1882,15 +1882,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var ol_ol_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ol/ol.css */ "./node_modules/ol/ol.css");
 /* harmony import */ var ol_ol_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(ol_ol_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var ol_Map__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ol/Map */ "./node_modules/ol/Map.js");
-/* harmony import */ var ol_View__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ol/View */ "./node_modules/ol/View.js");
-/* harmony import */ var ol_control__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ol/control */ "./node_modules/ol/control.js");
-/* harmony import */ var ol_control__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ol/control */ "./node_modules/ol/control/ScaleLine.js");
-/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer/Vector.js");
-/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer/Tile.js");
-/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source/Vector.js");
-/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source/OSM.js");
-/* harmony import */ var ol_proj__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/proj */ "./node_modules/ol/proj.js");
+/* harmony import */ var ol_Map__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ol/Map */ "./node_modules/ol/Map.js");
+/* harmony import */ var ol_View__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ol/View */ "./node_modules/ol/View.js");
+/* harmony import */ var ol_control__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ol/control */ "./node_modules/ol/control.js");
+/* harmony import */ var ol_control__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ol/control */ "./node_modules/ol/control/ScaleLine.js");
+/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer/Vector.js");
+/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer/Tile.js");
+/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source/Vector.js");
+/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source/OSM.js");
+/* harmony import */ var ol_Feature__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/Feature */ "./node_modules/ol/Feature.js");
+/* harmony import */ var ol_style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/style */ "./node_modules/ol/style/Style.js");
+/* harmony import */ var ol_style__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/style */ "./node_modules/ol/style/Icon.js");
+/* harmony import */ var ol_geom_Point__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/geom/Point */ "./node_modules/ol/geom/Point.js");
+/* harmony import */ var ol_Overlay__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ol/Overlay */ "./node_modules/ol/Overlay.js");
+//
+//
 //
 //
 //
@@ -1903,39 +1909,84 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      position: null
-    };
-  },
   mounted: function mounted() {
     this.initiateMap();
   },
   methods: {
     initiateMap: function initiateMap() {
       // create vector layer
-      var source = new ol_source__WEBPACK_IMPORTED_MODULE_2__.default();
-      var vector = new ol_layer__WEBPACK_IMPORTED_MODULE_3__.default({
+      var iconFeature = new ol_Feature__WEBPACK_IMPORTED_MODULE_1__.default({
+        geometry: new ol_geom_Point__WEBPACK_IMPORTED_MODULE_2__.default([-617751.81, 4014908.67]),
+        name: "Null Island",
+        population: 4000,
+        rainfall: 500,
+        id: 1
+      });
+      var iconStyle = new ol_style__WEBPACK_IMPORTED_MODULE_3__.default({
+        image: new ol_style__WEBPACK_IMPORTED_MODULE_4__.default({
+          anchor: [0.5, 46],
+          anchorXUnits: "fraction",
+          anchorYUnits: "pixels",
+          src: "img/pinpoint.png"
+        })
+      });
+      iconFeature.setStyle(iconStyle);
+      var source = new ol_source__WEBPACK_IMPORTED_MODULE_5__.default({
+        features: [iconFeature]
+      });
+      var vector = new ol_layer__WEBPACK_IMPORTED_MODULE_6__.default({
         source: source
       }); // create title layer
 
-      var raster = new ol_layer__WEBPACK_IMPORTED_MODULE_4__.default({
-        source: new ol_source__WEBPACK_IMPORTED_MODULE_5__.default()
+      var raster = new ol_layer__WEBPACK_IMPORTED_MODULE_7__.default({
+        source: new ol_source__WEBPACK_IMPORTED_MODULE_8__.default()
       }); // create map with 2 layer
       //
 
-      var map = new ol_Map__WEBPACK_IMPORTED_MODULE_6__.default({
-        controls: (0,ol_control__WEBPACK_IMPORTED_MODULE_7__.defaults)().extend([new ol_control__WEBPACK_IMPORTED_MODULE_8__.default({
+      var map = new ol_Map__WEBPACK_IMPORTED_MODULE_9__.default({
+        controls: (0,ol_control__WEBPACK_IMPORTED_MODULE_10__.defaults)().extend([new ol_control__WEBPACK_IMPORTED_MODULE_11__.default({
           units: "degrees"
         })]),
         target: "map",
         layers: [raster, vector],
-        view: new ol_View__WEBPACK_IMPORTED_MODULE_9__.default({
+        view: new ol_View__WEBPACK_IMPORTED_MODULE_12__.default({
           center: [-616187.55, 4015164.57],
           zoom: 15
         })
+      }); //setting overlay
+
+      var element = document.getElementById("popup");
+      var popup = new ol_Overlay__WEBPACK_IMPORTED_MODULE_13__.default({
+        element: element,
+        positioning: "bottom-center",
+        stopEvent: false,
+        offset: [0, -50]
       });
+      map.addOverlay(popup); // display popup on click
+
+      map.on("click", function (evt) {
+        var feature = map.forEachFeatureAtPixel(evt.pixel, function (feature) {
+          return feature;
+        });
+
+        if (feature) {
+          var coordinates = feature.getGeometry().getCoordinates();
+          popup.setPosition(coordinates);
+          $(element).popover({
+            placement: "top",
+            html: true,
+            content: feature.get("name")
+          });
+          $(element).popover("show");
+          window.location.href = "/service/" + feature.values_.id;
+        } else {
+          $(element).popover("destroy");
+        }
+      }); // change mouse cursor when over marker
     }
   }
 });
@@ -84021,9 +84072,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "map" } })
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "map" } }, [
+      _c("div", { attrs: { id: "popup" } })
+    ])
+  }
+]
 render._withStripped = true
 
 
