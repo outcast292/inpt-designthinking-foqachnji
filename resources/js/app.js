@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('map-container', require('./components/MapContainer.vue').default);
+Vue.component('calendar', require('./components/Calendar.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

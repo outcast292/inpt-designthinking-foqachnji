@@ -15,7 +15,15 @@ class CreateServiceUsersTable extends Migration
     {
         Schema::create('service_users', function (Blueprint $table) {
             $table->id();
+            $table->string("service_name");
+            $table->string("localization");
+            $table->string("email");
+            $table->string("phone");
             $table->timestamps();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+
         });
     }
 

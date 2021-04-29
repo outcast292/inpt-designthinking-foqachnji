@@ -19,7 +19,7 @@ class ServiceUser extends Authenticatable  implements MustVerifyEmail
     protected $fillable = [
         'service_name',
         'email',
-        'tel',
+        'phone',
         'password',
     ];
 
@@ -41,6 +41,11 @@ class ServiceUser extends Authenticatable  implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function rendezVous(){
+        return $this->hasMany("\App\Models\RendezVous");
+    }
+
 }
 
 
