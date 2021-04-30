@@ -26,7 +26,7 @@ export default {
       // create vector layer
       var iconFeature = new Feature({
         geometry: new Point([-617751.81, 4014908.67]),
-        name: "Null Island",
+        name: "Cour d'appel de Meknès",
         population: 4000,
         rainfall: 500,
         id: 1,
