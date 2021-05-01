@@ -6,13 +6,13 @@
 
             <div class="col-4">
                 <div class="col-12">
-                    <h3>{{ $service->service_name }}</h3>
+                    <h3>Cour d'appel de Meknès</h3>
                 </div>
                 <hr>
                 <div class="col-12">
-                    <h4>{{ $service->email }}</h4>
+                    <h4>Non Disponible</h4>
                 </div>
-                <div class="col-12">{{ $service->phone }}</div>
+                <div class="col-12">Non Disponible</div>
             </div>
             <div class="col-4">
                 <img src="{{ asset('storage/service_profiles/' . $service->id . '.jpg') }}" class="img-thumbnail" alt="">
